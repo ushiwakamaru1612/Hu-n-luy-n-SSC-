@@ -123,6 +123,26 @@
       font-size: 14px;
       opacity: 0.9;
     }
+
+    /* Responsive cho điện thoại */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.4em;
+        margin: 15px;
+        line-height: 1.4em;
+      }
+      .gallery-item {
+        width: 90%;
+      }
+      .overlay {
+        font-size: 12px;
+        padding: 5px 8px;
+      }
+      .overlay a button {
+        font-size: 11px;
+        padding: 3px 6px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -174,18 +194,19 @@
             item.appendChild(img);
             item.appendChild(overlay);
             gallery.appendChild(item);
+             // Thêm ảnh vào lightbox content
+            const bigImg = document.createElement("img");
+            bigImg.src = `https://lh3.googleusercontent.com/d/${file.id}=w2000`;
+            bigImg.alt = file.name;
+            lightboxContent.appendChild(bigImg);
           }
         });
       })
       .catch(err => console.error("Lỗi API:", err));
 
-    // Lightbox functions
-    function openLightbox(id, name) {
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      lightboxImg.src = `https://lh3.googleusercontent.com/d/${id}=w2000`;
-      lightboxImg.alt = name;
-      lightbox.classList.add("active");
+   // Lightbox functions
+    function openLightbox() {
+      document.getElementById("lightbox").classList.add("active");
     }
 
     function closeLightbox() {
@@ -194,6 +215,7 @@
   </script>
 </body>
 </html>
+
 
 
 
